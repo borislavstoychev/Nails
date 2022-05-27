@@ -35,12 +35,12 @@ export default function Gallery() {
   const [tags, setTags] = useState([])
   const [activeTag, setActiveTag] = useState()
 
-  // useEffect(() => {
-  //   ;(async function run() {
-  //     const data = await fetch('/api/tags').then((r) => r.json())
-  //     setTags(data.tags)
-  //   })()
-  // }, [])
+  useEffect(() => {
+    ;(async function run() {
+      const data = await fetch('/api/tags').then((r) => r.json())
+      setTags(data.tags)
+    })()
+  }, [])
 
   useEffect(() => {
     ;(async function run() {
@@ -58,19 +58,19 @@ export default function Gallery() {
     })()
   }, [term])
 
-  // useEffect(() => {
-  //   ;(async function run() {
-  //     if (!activeTag) return
-  //     const data = await fetch('/api/images', {
-  //       method: 'POST',
-  //       body: JSON.stringify({
-  //         tag: activeTag,
-  //       }),
-  //     }).then((r) => r.json())
-  //     const images = mapImageResources(data.resources)
-  //     setImages(images)
-  //   })()
-  // }, [activeTag])
+  useEffect(() => {
+    ;(async function run() {
+      if (!activeTag) return
+      const data = await fetch('/api/images', {
+        method: 'POST',
+        body: JSON.stringify({
+          tag: activeTag,
+        }),
+      }).then((r) => r.json())
+      const images = mapImageResources(data.resources)
+      setImages(images)
+    })()
+  }, [activeTag])
   return (
     <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
       <h1 className="mt-0 mb-2 text-6xl font-normal leading-normal text-teal-500">
